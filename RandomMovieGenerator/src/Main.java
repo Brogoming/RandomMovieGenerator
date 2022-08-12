@@ -12,7 +12,7 @@ public class Main extends Application implements EventHandler<ActionEvent>{
 	
 	Button buttonH = new Button("Horror");
 	Button buttonC = new Button("Comedy");
-	Text moviePresent;
+	Text moviePresent = new Text();
 	MovieList movieList = new MovieList();
 	Stage window = new Stage();
 	String horror = "C:\\Users\\kotag\\git\\RMG1\\RandomMovieGenerator\\src\\horrorMovies.txt";
@@ -29,8 +29,6 @@ public class Main extends Application implements EventHandler<ActionEvent>{
 		window.setMinWidth(250);
 		window.setMinHeight(250);
 		
-		moviePresent = new Text();
-		
 		HBox topMenu = new HBox(); 
 		buttonH.setOnAction(this);
 		buttonC.setOnAction(this);
@@ -41,6 +39,7 @@ public class Main extends Application implements EventHandler<ActionEvent>{
 		borderPane.setCenter(moviePresent);
 
 		Scene scene = new Scene(borderPane, 500, 450); 
+		scene.getStylesheets().add("CSS1.css");
 		primaryStage.setScene(scene); 
 		primaryStage.show();
 	}
