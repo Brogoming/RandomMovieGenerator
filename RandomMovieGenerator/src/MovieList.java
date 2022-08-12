@@ -15,6 +15,7 @@ public class MovieList {
 	}
 	
 	public void ReadFile(String movieList){
+		movies.clear();
 		try { //reading a file
 			BufferedReader br = new BufferedReader(new FileReader(movieList)); //path of the file we want to read
 			while((s = br.readLine()) != null) { //while each line read in the file isn’t null save s
@@ -26,10 +27,11 @@ public class MovieList {
 		}
 	}
 	
-	public void RandomMovie() {
+	public String RandomMovie() {
 		int index = random.nextInt(movies.size());
 		
 		System.out.println(movies.get(index));
+		return movies.get(index);
 	}
 
 }
