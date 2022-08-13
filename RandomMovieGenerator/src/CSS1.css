@@ -1,4 +1,23 @@
 .root { 
-	-fx-background-color: #b80e02; //changes the background color
-	-fx-font-size: 20px; //changes the font size
+	-fx-background-color: #140d63;
+	font-size: 10px;
+}
+.button-purple{
+	-fx-background-color: purple;
+	-fx-text-fill: white;
+	-fx-background-radius: 4;
+}
+.button-red{
+	-fx-background-color: red;
+	-fx-text-fill: white;
+	-fx-background-radius: 4;
+}
+.button-yellow{
+	-fx-background-color: yellow;
+	-fx-text-fill: black;
+	-fx-background-radius: 4;
+}
+#text-bold{
+	-fx-text-fill: white;
+	font-weight: bold;
 }

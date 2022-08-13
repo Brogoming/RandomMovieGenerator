@@ -1,22 +1,25 @@
 import javafx.application.Application; 
 import javafx.scene.Scene; 
 import javafx.scene.control.Button; 
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage; 
 import javafx.event.ActionEvent; 
 import javafx.event.EventHandler; 
+import javafx.geometry.Insets;
+import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 
 public class Main extends Application implements EventHandler<ActionEvent>{
 	
 	Button buttonH = new Button("Horror");
 	Button buttonC = new Button("Comedy");
+	Button buttonA = new Button("Action");
 	Text moviePresent = new Text();
 	MovieList movieList = new MovieList();
 	Stage window = new Stage();
 	String horror = "C:\\Users\\kotag\\git\\RMG1\\RandomMovieGenerator\\src\\horrorMovies.txt";
 	String comedy = "C:\\Users\\kotag\\git\\RMG1\\RandomMovieGenerator\\src\\comedyMovies.txt";
+	String action = "C:\\Users\\kotag\\git\\RMG1\\RandomMovieGenerator\\src\\actionMovies.txt";
 
 	public static void main(String[] args) {
 		launch(args); 
@@ -29,16 +32,27 @@ public class Main extends Application implements EventHandler<ActionEvent>{
 		window.setMinWidth(250);
 		window.setMinHeight(250);
 		
-		HBox topMenu = new HBox(); 
+		moviePresent.setFill(Color.WHITE);
+		buttonH.getStyleClass().add("button-purple");
+		buttonC.getStyleClass().add("button-yellow");
+		buttonA.getStyleClass().add("button-red");
+		
+		GridPane grid = new GridPane();
+		grid.setPadding(new Insets(10, 10, 10, 10)); 
+		grid.setVgap(8); 
+		grid.setHgap(10); 
+		
 		buttonH.setOnAction(this);
 		buttonC.setOnAction(this);
-		topMenu.getChildren().addAll(buttonH, buttonC); 
+		buttonA.setOnAction(this);
+		
+		GridPane.setConstraints(buttonH, 0, 0);
+		GridPane.setConstraints(buttonC, 0, 1);
+		GridPane.setConstraints(buttonA, 0, 2);
+		GridPane.setConstraints(moviePresent, 3, 0);
 
-		BorderPane borderPane = new BorderPane();
-		borderPane.setTop(topMenu); 
-		borderPane.setCenter(moviePresent);
-
-		Scene scene = new Scene(borderPane, 500, 450); 
+		grid.getChildren().addAll(buttonH, buttonC, buttonA, moviePresent);
+		Scene scene = new Scene(grid, 500, 450); 
 		scene.getStylesheets().add("CSS1.css");
 		primaryStage.setScene(scene); 
 		primaryStage.show();
@@ -54,6 +68,9 @@ public class Main extends Application implements EventHandler<ActionEvent>{
 			movieList.ReadFile(comedy);
 			moviePresent.setText(movieList.RandomMovie());
 		}
+		if(event.getSource() == buttonA) { 
+			movieList.ReadFile(action);
+			moviePresent.setText(movieList.RandomMovie());
+		}
 	}
-
 }
